@@ -3,6 +3,7 @@
     <!-- 登录方式切换 -->
     <view class="login-tabs">
       <view class="tab-item" :class="{ active: loginType === 'password' }" @click="loginType = 'password'">密码登录</view>
+      <view class="tab-item" :class="{ active: loginType === 'sms' }" @click="loginType = 'sms'">验证码登录</view>
     </view>
 
     <!-- 登录表单区域 -->
@@ -131,6 +132,52 @@ const handlePasswordLogin = () => {
     });
   }).finally(() => {
     uni.hideLoading();
+  });
+};
+
+// 发送验证码
+const sendSmsCode = () => {
+  // 校验手机号
+  if (!smsForm.phone || !/^1\d{10}$/.test(smsForm.phone)) {
+    uni.showToast({
+      title: '请输入正确的手机号',
+      icon: 'none'
+    });
+    return;
+  }
+
+  // 防止重复点击
+  if (counting.value) return;
+
+  counting.value = true;
+  countdown.value = 60;
+  codeText.value = countdown.value + 's';
+
+  const timer = setInterval(() => {
+    countdown.value--;
+    codeText.value = countdown.value + 's';
+    if (countdown.value <= 0) {
+      clearInterval(timer);
+      counting.value = false;
+      codeText.value = '重新获取';
+    }
+  }, 1000);
+
+  // 调用发送验证码接口
+  userApi.sendCode({ phone: smsForm.phone }).then(() => {
+    uni.showToast({
+      title: '验证码已发送，请查收QQ邮箱',
+      icon: 'success'
+    });
+  }).catch(err => {
+    uni.showToast({
+      title: err.msg || '发送失败，请重试',
+      icon: 'none'
+    });
+    // 发送失败，重置倒计时
+    clearInterval(timer);
+    counting.value = false;
+    codeText.value = '获取验证码';
   });
 };
 

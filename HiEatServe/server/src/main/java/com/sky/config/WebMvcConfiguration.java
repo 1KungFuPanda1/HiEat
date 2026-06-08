@@ -65,7 +65,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         registry.addInterceptor(jwtTokenUserInterceptor)
                 .addPathPatterns("/user/**")
                 .excludePathPatterns("/user/user/login", "/user/user/register", "/user/user/resetPassword")
-                .excludePathPatterns("/user/user/login/account") // 排除账号密码登录接口
+                .excludePathPatterns("/user/user/login/account", "/user/user/login/sms", "/user/user/sendCode")
                 .excludePathPatterns("/user/shop/status/**", "/user/shop/page/**", "/user/shop/count/**", "/user/shop/score/**")
                 .excludePathPatterns("/user/shop/category/**", "/user/shop/search/**") // 分类列表和搜索无需登录
                 .excludePathPatterns("/user/shopCategory/list")

@@ -11,3 +11,13 @@ sky:
     port: 6379
     database: 6
 
+spring:
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 2395358987@qq.com
+    password: qejrygpkuajtdica
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+

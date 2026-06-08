@@ -2,6 +2,7 @@ package com.sky.controller.user;
 
 import com.sky.constant.JwtClaimsConstant;
 import com.sky.dto.UserLoginAccountDTO;
+import com.sky.dto.UserLoginCodeDTO;
 import com.sky.dto.UserLoginDTO;
 import com.sky.dto.UserUpdateDTO;
 import com.sky.dto.UserRegisterDTO;
@@ -66,8 +67,54 @@ public class UserController {
     }
 
     /**
+     * 发送验证码
+     *
+     * @param userLoginAccountDTO
+     * @return
+     */
+    @PostMapping("/sendCode")
+    @ApiOperation("发送验证码")
+    public Result<String> sendCode(@RequestBody UserLoginAccountDTO userLoginAccountDTO) {
+        String phone = userLoginAccountDTO.getPhone();
+        log.info("发送验证码：手机号={}", phone);
+
+        userService.sendVerificationCode(phone);
+        return Result.success("验证码已发送");
+    }
+
+    /**
+     * 手机号验证码登录
+     *
+     * @param userLoginCodeDTO
+     * @return
+     */
+    @PostMapping("/login/sms")
+    @ApiOperation("手机号验证码登录")
+    public Result<UserLoginVO> loginByCode(@RequestBody UserLoginCodeDTO userLoginCodeDTO) {
+        log.info("用户验证码登录：手机号={}", userLoginCodeDTO.getPhone());
+
+        // 验证码登录
+        User user = userService.codeLogin(userLoginCodeDTO);
+
+        // 为用户生成jwt令牌
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(JwtClaimsConstant.USER_ID, user.getId());
+        String token = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
+
+        UserLoginVO userLoginVO = UserLoginVO.builder()
+                .id(user.getId())
+                .openid(user.getOpenid())
+                .username(user.getUsername())
+                .phone(user.getPhone())
+                .avatar(user.getAvatar())
+                .token(token)
+                .build();
+        return Result.success(userLoginVO);
+    }
+
+    /**
      * 更新用户信息
-     * 
+     *
      * @param userUpdateDTO
      * @return
      */

@@ -1,6 +1,7 @@
 package com.sky.service;
 
 import com.sky.dto.UserLoginAccountDTO;
+import com.sky.dto.UserLoginCodeDTO;
 import com.sky.dto.UserLoginDTO;
 import com.sky.dto.UserRegisterDTO;
 import com.sky.dto.UserUpdateDTO;
@@ -45,9 +46,17 @@ public interface UserService {
 
     /**
      * 发送验证码
-     * 
+     *
      * @param phone 手机号
      * @return 验证码
      */
     String sendVerificationCode(String phone);
+
+    /**
+     * 验证码登录
+     *
+     * @param userLoginCodeDTO
+     * @return
+     */
+    User codeLogin(UserLoginCodeDTO userLoginCodeDTO);
 }

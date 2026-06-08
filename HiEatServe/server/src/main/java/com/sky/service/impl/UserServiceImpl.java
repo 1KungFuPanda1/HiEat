@@ -5,12 +5,14 @@ import com.sky.constant.StatusConstant;
 import com.sky.constant.RedisConstant;
 import com.sky.context.BaseContext;
 import com.sky.dto.UserLoginAccountDTO;
+import com.sky.dto.UserLoginCodeDTO;
 import com.sky.dto.UserRegisterDTO;
 import com.sky.dto.UserResetPasswordDTO;
 import com.sky.dto.UserUpdateDTO;
 import com.sky.entity.User;
 import com.sky.exception.*;
 import com.sky.mapper.UserMapper;
+import com.sky.service.EmailService;
 import com.sky.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +34,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+    @Autowired
+    private EmailService emailService;
 
     /**
      * 账号密码登录
@@ -198,9 +202,58 @@ public class UserServiceImpl implements UserService {
                 5,
                 TimeUnit.MINUTES);
 
-        // 4. 模拟发送验证码
-        log.info("向手机号 {} 发送验证码: {}", phone, code);
+        // 4. 通过QQ邮箱发送验证码
+        emailService.sendVerificationCode(phone, code);
 
         return code;
+    }
+
+    /**
+     * 验证码登录（自动注册）
+     */
+    @Override
+    public User codeLogin(UserLoginCodeDTO userLoginCodeDTO) {
+        String phone = userLoginCodeDTO.getPhone();
+        String inputCode = userLoginCodeDTO.getCode();
+
+        // 1. 校验验证码
+        String storedCode = redisTemplate.opsForValue()
+                .get(RedisConstant.VERIFICATION_CODE_PREFIX + phone);
+        if (storedCode == null) {
+            throw new BusinessException("验证码已过期，请重新获取");
+        }
+        if (!storedCode.equals(inputCode)) {
+            throw new BusinessException("验证码错误");
+        }
+
+        // 2. 验证码正确 → 删除（防止复用）
+        redisTemplate.delete(RedisConstant.VERIFICATION_CODE_PREFIX + phone);
+
+        // 3. 根据手机号查询用户
+        User user = userMapper.getByPhone(phone);
+
+        // 4. 用户不存在 → 自动注册
+        if (user == null) {
+            user = User.builder()
+                    .phone(phone)
+                    .username("用户" + phone.substring(phone.length() - 4))
+                    .avatar("http://localhost:8080/files/87c668d5-6582-4e7c-b271-affc6f003a06.jpg")
+                    .status(StatusConstant.ENABLE)
+                    .createTime(LocalDateTime.now())
+                    .build();
+            userMapper.insert(user);
+            log.info("新用户自动注册成功：手机号={}", phone);
+        } else {
+            // 5. 用户存在 → 检查状态
+            if (com.sky.constant.StatusConstant.DISABLE == user.getStatus()) {
+                throw new AccountLockedException(MessageConstant.ACCOUNT_LOCKED);
+            }
+        }
+
+        // 6. 更新最后登录时间
+        user.setLastLoginTime(LocalDateTime.now());
+        userMapper.update(user);
+
+        return user;
     }
 }
