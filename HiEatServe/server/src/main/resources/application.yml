@@ -1,0 +1,64 @@
+server:
+  port: 8080
+
+app:
+  name: hieat
+  base-url: http://localhost:${server.port}
+
+file:
+  upload-dir: ${user.home}/.${app.name}/uploads
+#  ${user.home}：当前系统用户目录C:\Users\23953
+# 最终路径：C:\Users\23953\.hieat\uploads
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  servlet:
+    multipart:
+      max-file-size: 2MB        # 设置单个文件最大大小为10MB
+      max-request-size: 10MB    # 设置多个文件大小为100MB
+  datasource:
+    druid:
+      driver-class-name: ${sky.datasource.driver-class-name}
+      url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${sky.datasource.username}
+      password: ${sky.datasource.password}
+  redis:
+    host: ${sky.redis.host}
+    port: ${sky.redis.port}
+#    password: ${sky.redis.password}
+    database: ${sky.redis.database}
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sky.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sky:
+        mapper: debug
+        service: info
+        controller: info
+
+sky:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: your-admin-secret-key
+    # 设置jwt过期时间
+    admin-ttl: 259200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    user-secret-key: your-user-secret-key
+    user-ttl: 259200000
+    user-token-name: authentication
+  shop:
+    address: 北京市海淀区上地十街10号
+  baidu:
+    ak: your-ak

@@ -1,0 +1,170 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "外卖"
+			}
+		},
+		{
+			"path": "pages/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"navigationBarBackgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/orders/orders",
+			"style": {
+				"navigationBarTitleText": "订单"
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/setting/index",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/shop/detail",
+			"style": {
+				"navigationBarTitleText": "店铺信息",
+				"navigationBarBackgroundColor": "#1e6dcc"
+			}
+		},
+		{
+			"path": "pages/shop/categoryShop",
+			"style": {
+				"navigationBarTitleText": "分类店铺",
+				"navigationBarBackgroundColor": "#1e6dcc",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/address/index",
+			"style": {
+				"navigationBarTitleText": "我的地址",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/address/edit",
+			"style": {
+				"navigationBarTitleText": "编辑地址",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/address/add",
+			"style": {
+				"navigationBarTitleText": "新增地址",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/order/submit",
+			"style": {
+				"navigationBarTitleText": "提交订单",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/order/payment",
+			"style": {
+				"navigationBarTitleText": "订单支付",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/orders/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/orders/review",
+			"style": {
+				"navigationBarTitleText": "订单评价",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/about/index",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/user/profile",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/help/index",
+			"style": {
+				"navigationBarTitleText": "帮助与反馈",
+				"navigationBarBackgroundColor": "#2588FF"
+			}
+		},
+		{
+			"path": "pages/user/register",
+			"style": {
+				"navigationBarTitleText": "用户注册"
+			}
+		},
+		{
+			"path": "pages/user/forgot-password",
+			"style": {
+				"navigationBarTitleText": "忘记密码"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#2588FF",
+		"backgroundColor": "#ffffff"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "B4BCC6",
+		"selectedColor": "2588FF",
+		"borderStyle": "white",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "外卖",
+				"iconPath": "/static/tabBar/home.png",
+				"selectedIconPath": "/static/tabBar/home_active.png"
+			},
+			{
+				"pagePath": "pages/orders/orders",
+				"text": "订单",
+				"iconPath": "/static/tabBar/orders.png",
+				"selectedIconPath": "/static/tabBar/orders_active.png"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"text": "我的",
+				"iconPath": "/static/tabBar/user.png",
+				"selectedIconPath": "/static/tabBar/user_active.png"
+			}
+		]
+	}
+}

@@ -1,0 +1,9 @@
+/* tslint:disable */
+import './dashboard'
+import './hamburger'
+import './inform'
+import './main'
+import './member'
+import './pay'
+import './shop'
+import './vip'

@@ -1,0 +1,414 @@
+.shop-info-container {
+  padding: 20px;
+
+  .shop-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .homeTitle {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #303133;
+    }
+  }
+
+  .shop-info-content {
+    padding: 10px 0;
+  }
+
+  .info-section {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #f5f7fa;
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ebeef5;
+      color: #409EFF;
+
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .info-item {
+    margin-bottom: 15px;
+
+    .info-label {
+      display: block;
+      font-size: 14px;
+      color: #606266;
+      margin-bottom: 8px;
+    }
+
+    .info-value {
+      display: block;
+      font-size: 15px;
+      color: #303133;
+      padding: 8px 0;
+
+      &.description {
+        white-space: pre-line;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .image-item {
+    .image-container {
+      width: 150px;
+      height: 150px;
+      border: 1px dashed #d9d9d9;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      margin: 0 auto;
+
+      &:hover {
+        border-color: #409EFF;
+      }
+
+      .shop-logo, .license-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+
+      .empty-image {
+        text-align: center;
+        color: #909399;
+
+        i {
+          font-size: 28px;
+          margin-bottom: 8px;
+        }
+
+        p {
+          margin: 0;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .avatar-uploader {
+    width: 100%;
+    height: 100%;
+
+    :deep(.el-upload) {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  // 对话框中的图片容器样式
+  .dialog-image-container {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 auto;
+    
+    &:hover {
+      border-color: #409EFF;
+    }
+    
+    .dialog-shop-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; // 修改为contain，确保图片完整显示
+    }
+  }
+  
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    text-align: center;
+  }
+}
+
+// 图片预览对话框样式
+:deep(.image-preview-dialog) {
+  .el-dialog {
+    margin-top: 5vh !important;
+  }
+
+  .el-dialog__header {
+    padding: 10px;
+  }
+
+  .el-dialog__body {
+    padding: 0;
+    text-align: center;
+  }
+
+  .preview-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+}
+
+// 上传组件样式
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+}
+
+// 删除重复的全局样式定义
+// .dialog-image-container {
+//   text-align: center;
+// }
+
+// .dialog-shop-logo {
+//   width: 120px;
+//   height: 120px;
+//   object-fit: cover;
+//   border-radius: 4px;
+// }
+
+.upload-tip {
+  font-size: 12px;
+  color: #606266;
+  margin-top: 5px;
+}
+
+
+  // 店铺照片展示区域样式
+  .shop-photos-container {
+    margin-top: 15px;
+    
+    .photos-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      
+      .photo-item {
+        width: 150px;
+        height: 150px;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        
+        .shop-photo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          cursor: pointer;
+          transition: transform 0.3s;
+          
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+    
+    .no-photos {
+      text-align: center;
+      padding: 30px 0;
+      color: #909399;
+      
+      i {
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+      
+      p {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+
+  // 编辑对话框中的店铺照片编辑区域
+  .shop-photos-edit {
+    margin-top: 10px;
+    
+    .photos-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      
+      .photo-item {
+        width: 120px;
+        height: 120px;
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        
+        .shop-photo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        
+        .photo-actions {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          border-radius: 0 0 0 6px;
+          padding: 3px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        
+        &:hover .photo-actions {
+          opacity: 1;
+        }
+      }
+      
+      .photo-upload-item {
+        width: 120px;
+        height: 120px;
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        
+        &:hover {
+          border-color: #409EFF;
+        }
+        
+        .upload-trigger {
+          text-align: center;
+          color: #8c939d;
+          
+          i {
+            font-size: 28px;
+            margin-bottom: 5px;
+            display: block;
+          }
+          
+          span {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+// 图片预览对话框样式（全局样式）
+:deep(.image-preview-dialog) {
+  .el-dialog {
+    margin-top: 5vh !important;
+  }
+
+  .el-dialog__header {
+    padding: 10px;
+  }
+
+  .el-dialog__body {
+    padding: 0;
+    text-align: center;
+  }
+
+  .preview-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+}
+
+// 上传组件样式（全局样式）
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+}
+
+// 删除重复的全局样式定义
+// .dialog-image-container {
+//   text-align: center;
+// }
+
+// .dialog-shop-logo {
+//   width: 120px;
+//   height: 120px;
+//   object-fit: cover;
+//   border-radius: 4px;
+// }
+
+.upload-tip {
+  font-size: 12px;
+  color: #606266;
+  margin-top: 5px;
+}

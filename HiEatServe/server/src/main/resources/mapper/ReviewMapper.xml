@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.ReviewMapper">
+
+    <select id="pageQuery" resultType="com.sky.entity.Review">
+        select * from review
+        <where>
+            <if test="shopId != null">
+                and shop_id = #{shopId}
+            </if>
+            <if test="rating != null">
+                and rating = #{rating}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+</mapper>

@@ -1,0 +1,128 @@
+{
+  "id": "4866855",
+  "name": "FoodTime",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4406936",
+      "name": "评论",
+      "font_class": "comment",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "658000",
+      "name": "地址",
+      "font_class": "address",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "4880013",
+      "name": "性别，日历",
+      "font_class": "xiala",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "6366907",
+      "name": "手机",
+      "font_class": "phone",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "517498",
+      "name": "phone",
+      "font_class": "custom-phone",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "1526595",
+      "name": "id",
+      "font_class": "id",
+      "unicode": "e88c",
+      "unicode_decimal": 59532
+    },
+    {
+      "icon_id": "5022863",
+      "name": "验证码",
+      "font_class": "yanzhengma",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "11267161",
+      "name": "dashboard",
+      "font_class": "dashboard",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "24737080",
+      "name": "套餐",
+      "font_class": "taocan",
+      "unicode": "ed1f",
+      "unicode_decimal": 60703
+    },
+    {
+      "icon_id": "30438",
+      "name": "shop",
+      "font_class": "shop",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "880404",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e6bc",
+      "unicode_decimal": 59068
+    },
+    {
+      "icon_id": "2554229",
+      "name": "Employee",
+      "font_class": "Employee",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "8549644",
+      "name": "dish",
+      "font_class": "dish",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "11053197",
+      "name": "combo",
+      "font_class": "combo",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "15838497",
+      "name": "lock",
+      "font_class": "lock",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "24698403",
+      "name": "category",
+      "font_class": "category",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
+      "icon_id": "34452925",
+      "name": "order",
+      "font_class": "order",
+      "unicode": "e833",
+      "unicode_decimal": 59443
+    }
+  ]
+}

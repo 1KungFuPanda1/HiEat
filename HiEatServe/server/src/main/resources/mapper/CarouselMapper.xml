@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.CarouselMapper">
+
+    <resultMap id="carouselMap" type="com.sky.entity.Carousel">
+        <id column="id" property="id"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="shop_id" property="shopId"/>
+        <association property="shop" javaType="com.sky.entity.Shop">
+            <id column="s_id" property="id"/>
+            <result column="shop_name" property="shopName"/>
+            <result column="address" property="address"/>
+            <result column="image" property="image"/>
+        </association>
+    </resultMap>
+
+    <select id="pageQuery" resultMap="carouselMap">
+        select c.*, s.id as s_id, s.shop_name, s.address, s.image
+        from carousel c
+        left join shop s on c.shop_id = s.id
+        order by c.id desc
+    </select>
+    
+</mapper> 

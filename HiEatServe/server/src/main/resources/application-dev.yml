@@ -1,0 +1,13 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 127.0.0.1
+    port: 3306
+    database: hieat
+    username: root
+    password: your-password
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 6
+

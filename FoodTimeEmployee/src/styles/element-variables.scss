@@ -1,0 +1,48 @@
+/* Element Plus Variables and Global CSS Rules */
+/* This file combines the Element Plus variable overrides and global CSS rules
+   that were previously scattered across _variables.scss */
+
+// Override Element Plus CSS variables
+:root {
+  --el-color-primary: #c3bef0;
+  --el-color-warning: #c3bef0;
+  --el-color-success: #13ce66;
+  --el-color-danger: #ff4949;
+  --el-color-info: #5d5d5d;
+  --el-button-font-weight: 400;
+  --el-border-color-light: #dfe4ed;
+  --el-border-color-lighter: #e6ebf5;
+  --el-table-border: 1px solid #dfe6ec;
+  --el-color-text-primary: #20232A;
+  --el-color-text-regular: #818693;
+  --el-color-text-placeholder: #BAC0CD;
+  --el-border-color-base: #D8DDE3;
+  --el-bg-color: #F3F4F7;
+}
+
+// Avatar uploader global styles
+.avatar-uploader .el-upload {
+  border-radius: 4px !important;
+  background: #FCFCFC;
+}
+
+.avatar-uploader .avatar-uploader-icon {
+  background: #FCFCFC;
+}
+
+.avatar-uploader .el-icon-plus:before {
+  content: '上传图片' !important;
+  font-size: 12px;
+  color: #000;
+}
+
+// Dialog global styles
+.el-dialog {
+  border-radius: 8px;
+}
+
+.el-dialog__header {
+  background: #FBFBFA;
+  border-radius: 8px 8px 0 0;
+  border: none;
+}

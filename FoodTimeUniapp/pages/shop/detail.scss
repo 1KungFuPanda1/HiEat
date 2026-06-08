@@ -1,0 +1,470 @@
+.shop-detail {
+  min-height: 100vh;
+  background-color: #fff;
+  padding-bottom: 100rpx; // 为底部购物车留出空间
+
+  .shop-info {
+    position: relative;
+    background-color: #ffffff;
+
+    .shop-banner {
+      height: 220rpx; // 将高度从180rpx增加到220rpx
+      background-image: url('http://localhost:8080/files/1a28c1ab-24f8-47ea-b8dd-728117c6030f.png');
+      background-size: cover;
+      background-position: bottom;
+      position: relative;
+      overflow: hidden;
+
+      .shop-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+
+    .shop-card {
+      width: 90%;
+      margin: -100rpx auto 0; // 将上边距从-40rpx调整为-60rpx，使卡片向上偏移更多
+      background-color: #fff;
+      border-radius: 16rpx;
+      box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 30rpx;
+
+      .shop-header-content {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20rpx 30rpx; // 减小内边距，从30rpx减小到20rpx，减少卡片高度
+        box-sizing: border-box;
+
+        .shop-info-left {
+          flex: 1;
+          padding-right: 20rpx;
+
+          .shop-name-large {
+            font-size: 36rpx;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10rpx;
+          }
+
+          .shop-desc-header {
+            font-size: 24rpx;
+            color: #666;
+          }
+        }
+
+        .shop-logo {
+          width: 120rpx;
+          height: 120rpx;
+          border-radius: 8rpx;
+          overflow: hidden;
+          border: 4rpx solid #fff;
+          box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+
+          image {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      .shop-notice-bar {
+        display: flex;
+        align-items: center;
+        padding: 15rpx 30rpx; // 减小内边距，从20rpx减小到15rpx，减少卡片高度
+        border-top: 1rpx solid #f5f5f5;
+
+        .notice-text {
+          margin-left: 10rpx;
+          font-size: 24rpx;
+          color: #666;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  .tabs {
+    display: flex;
+    background-color: #fff;
+    // border-bottom: 1rpx solid #eee;
+
+    .tab-item {
+      flex: 1;
+      height: 80rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28rpx;
+      color: #333;
+      position: relative;
+
+      &.active {
+        color: #2588FF;
+        font-weight: 500;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60rpx;
+          height: 4rpx;
+          background-color: #2588FF;
+          border-radius: 2rpx;
+        }
+      }
+    }
+  }
+
+  .content-area {
+    background-color: #fff;
+
+    .menu-content {
+      .menu-container {
+        display: flex;
+        height: calc(100vh - 400rpx);
+
+        .category-list {
+          width: 160rpx;
+          background-color: #f8f8f8;
+          height: 100%;
+
+          .category-item {
+            height: 100rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26rpx;
+            color: #333;
+            position: relative;
+            padding: 0 10rpx;
+            text-align: center;
+            transition: all 0.3s ease;
+
+            &.active {
+              background-color: #fff;
+              color: #2588FF;
+              font-weight: 500;
+              position: relative;
+
+              &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                height: 36rpx;
+                width: 6rpx;
+                background-color: #2588FF;
+                border-radius: 0 6rpx 6rpx 0;
+              }
+            }
+
+            .category-badge {
+              position: absolute;
+              top: 10rpx;
+              right: 10rpx;
+              min-width: 32rpx;
+              height: 32rpx;
+              border-radius: 16rpx;
+              background-color: #ff5722;
+              color: #fff;
+              font-size: 20rpx;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0 6rpx;
+            }
+
+            .category-tag {
+              position: absolute;
+              bottom: 10rpx;
+              right: 10rpx;
+              font-size: 20rpx;
+              color: #ff9500;
+              background-color: rgba(255, 149, 0, 0.1);
+              padding: 2rpx 8rpx;
+              border-radius: 4rpx;
+            }
+          }
+        }
+
+        .goods-list {
+          flex: 1;
+          height: 100%;
+          position: relative;
+          // 添加弹性滚动，提高滚动体验
+          -webkit-overflow-scrolling: touch;
+
+          .category-section {
+            padding: 0 20rpx;
+
+            .category-title {
+              padding: 15rpx 0;
+              font-size: 28rpx;
+              font-weight: bold;
+              color: #333;
+              position: sticky;
+              top: 0;
+              background-color: #fff;
+              z-index: 10;
+              border-bottom: 1rpx solid #f5f5f5;
+              margin-bottom: 10rpx;
+              display: flex;
+              align-items: center;
+
+              .category-label {
+                margin-left: 10rpx;
+                font-size: 20rpx;
+                color: #ff9500;
+                background-color: rgba(255, 149, 0, 0.1);
+                padding: 2rpx 8rpx;
+                border-radius: 4rpx;
+                font-weight: normal;
+              }
+            }
+
+            .loading-state,
+            .empty-state {
+              height: 150rpx;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              margin: 20rpx 0;
+
+              .loading-icon {
+                animation: rotate 1.5s linear infinite;
+              }
+
+              .loading-text,
+              .empty-text {
+                font-size: 26rpx;
+                color: #999;
+                margin-top: 10rpx;
+              }
+            }
+
+            .empty-state {
+              opacity: 0.7;
+            }
+
+            :deep(.goods-item) {
+              padding: 15rpx 0;
+
+              .goods-image {
+                width: 140rpx;
+                height: 140rpx;
+              }
+
+              .goods-info {
+                .goods-name {
+                  margin-bottom: 6rpx;
+                }
+
+                .goods-desc {
+                  margin-bottom: 6rpx;
+                }
+
+                .goods-sales {
+                  margin-bottom: 6rpx;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .comment-content {
+      padding: 20rpx;
+
+      .comment-summary {
+        display: flex;
+        background-color: #f8f8f8;
+        padding: 20rpx;
+        border-radius: 8rpx;
+        margin-bottom: 20rpx;
+
+        .score-box {
+          width: 160rpx;
+          text-align: center;
+          border-right: 1rpx solid #eee;
+          padding-right: 20rpx;
+
+          .score {
+            font-size: 48rpx;
+            color: #ff9500;
+            font-weight: bold;
+          }
+
+          .score-text {
+            font-size: 24rpx;
+            color: #666;
+          }
+        }
+
+        .rate-box {
+          flex: 1;
+          padding-left: 20rpx;
+
+          .rate-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10rpx;
+
+            .rate-label {
+              width: 80rpx;
+              font-size: 24rpx;
+              color: #666;
+            }
+
+            .rate-value {
+              margin-left: 10rpx;
+              font-size: 24rpx;
+              color: #ff9500;
+            }
+          }
+        }
+      }
+
+      .comment-list {
+        .comment-item {
+          padding: 20rpx 0;
+          border-bottom: 1rpx solid #eee;
+
+          .comment-user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10rpx;
+
+            .user-avatar {
+              width: 60rpx;
+              height: 60rpx;
+              border-radius: 30rpx;
+              margin-right: 10rpx;
+            }
+
+            .user-info {
+              flex: 1;
+
+              .user-name {
+                font-size: 26rpx;
+                color: #333;
+              }
+
+              .comment-time {
+                font-size: 22rpx;
+                color: #999;
+              }
+            }
+
+            .comment-rate {
+              margin-left: 10rpx;
+            }
+          }
+
+          .comment-content {
+            font-size: 26rpx;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 10rpx;
+          }
+
+          .comment-images {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10rpx;
+
+            image {
+              width: 160rpx;
+              height: 160rpx;
+              margin-right: 10rpx;
+              margin-bottom: 10rpx;
+              border-radius: 4rpx;
+            }
+          }
+
+          .comment-goods {
+            font-size: 24rpx;
+            color: #999;
+          }
+        }
+      }
+    }
+
+    .merchant-content {
+      padding: 20rpx;
+
+      .merchant-info {
+        background-color: #fff;
+        border-radius: 8rpx;
+        overflow: hidden;
+        margin-bottom: 20rpx;
+
+        .info-item {
+          display: flex;
+          padding: 20rpx;
+          border-bottom: 1rpx solid #f5f5f5;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .info-label {
+            width: 160rpx;
+            font-size: 26rpx;
+            color: #666;
+          }
+
+          .info-value {
+            flex: 1;
+            font-size: 26rpx;
+            color: #333;
+          }
+        }
+      }
+
+      .shop-images {
+        .images-title {
+          font-size: 28rpx;
+          font-weight: bold;
+          margin-bottom: 20rpx;
+        }
+
+        .images-list {
+          display: flex;
+          flex-wrap: wrap;
+
+          image {
+            width: 220rpx;
+            height: 220rpx;
+            margin-right: 10rpx;
+            margin-bottom: 10rpx;
+            border-radius: 4rpx;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

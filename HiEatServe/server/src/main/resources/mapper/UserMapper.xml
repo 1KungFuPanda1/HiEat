@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.UserMapper">
+
+    <update id="update" parameterType="com.sky.entity.User">
+        update user
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="idNumber != null">id_number = #{idNumber},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="openid != null">openid = #{openid},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="lastLoginTime != null">last_login_time = #{lastLoginTime},</if>
+        </set>
+        where id = #{id}
+    </update>
+    
+    <insert id="insert" parameterType="com.sky.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="phone != null">phone,</if>
+            <if test="sex != null">sex,</if>
+            <if test="idNumber != null">id_number,</if>
+            <if test="avatar != null">avatar,</if>
+            <if test="openid != null">openid,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="lastLoginTime != null">last_login_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="idNumber != null">#{idNumber},</if>
+            <if test="avatar != null">#{avatar},</if>
+            <if test="openid != null">#{openid},</if>
+            <if test="username != null">#{username},</if>
+            <if test="password != null">#{password},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="lastLoginTime != null">#{lastLoginTime},</if>
+        </trim>
+    </insert>
+    
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id) from user
+        <where>
+            <if test="begin != null">
+                and create_time &gt;= #{begin}
+            </if>
+            <if test="end != null">
+                and create_time &lt;= #{end}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+</mapper>

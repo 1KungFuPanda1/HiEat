@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.ShopMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into shop
+        (shop_name, address, phone, image, category_id ,des, score, status, audit_status,
+        audit_opinion, business_license, create_time, update_time, 
+        average_send_time, min_fee, deliver_fee, order_quantity)
+        values
+        (#{shopName}, #{address}, #{phone}, #{image}, #{categoryId}, #{des}, #{score}, #{status}, #{auditStatus},
+        #{auditOpinion}, #{businessLicense}, #{createTime}, #{updateTime},
+        #{averageSendTime}, #{minFee}, #{deliverFee}, #{orderQuantity})
+    </insert>
+
+    <update id="update">
+        update shop
+        <set>
+            <if test="shopName != null">shop_name = #{shopName},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="des != null">des = #{des},</if>
+            <if test="score != null">score = #{score},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="auditStatus != null">audit_status = #{auditStatus},</if>
+            <if test="auditOpinion != null">audit_opinion = #{auditOpinion},</if>
+            <if test="businessLicense != null">business_license = #{businessLicense},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="averageSendTime != null">average_send_time = #{averageSendTime},</if>
+            <if test="minFee != null">min_fee = #{minFee},</if>
+            <if test="deliverFee != null">deliver_fee = #{deliverFee},</if>
+            <if test="orderQuantity != null">order_quantity = #{orderQuantity},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="pageQueryForUser" resultType="com.sky.entity.Shop">
+        select * from shop
+        where status = #{status} and audit_status = #{auditStatus}
+        order by create_time desc
+    </select>
+
+    <select id="pageQueryByRule" resultType="com.sky.entity.Shop">
+        select * from shop
+        where status = #{status} and audit_status = #{auditStatus}
+        order by ${rule} desc
+    </select>
+
+    <select id="pageQueryByAudit" resultType="com.sky.entity.Shop">
+        select * from shop
+        <where>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    
+    <select id="pageQueryByCategoryIdWithRule" resultType="com.sky.entity.Shop">
+        select * from shop
+        where category_id = #{categoryId} and status = 1 and audit_status = 1
+        order by 
+        <choose>
+            <when test="rule == 'score'">score</when>
+            <when test="rule == 'sales'">order_quantity</when>
+            <otherwise>create_time</otherwise>
+        </choose> 
+        desc
+    </select>
+    
+    <select id="pageQueryByNameWithRule" resultType="com.sky.entity.Shop">
+        select * from shop
+        where shop_name like concat('%', #{shopName}, '%') 
+        and status = 1 and audit_status = 1
+        order by 
+        <choose>
+            <when test="rule == 'score'">score</when>
+            <when test="rule == 'sales'">order_quantity</when>
+            <otherwise>create_time</otherwise>
+        </choose> 
+        desc
+    </select>
+    
+</mapper>
